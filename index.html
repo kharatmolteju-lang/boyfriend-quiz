@@ -1,0 +1,949 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For My Love ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+    background:
+        radial-gradient(circle at top left, #ffd6e7, transparent 35%),
+        radial-gradient(circle at bottom right, #d9c2ff, transparent 35%),
+        linear-gradient(135deg, #ff9aaf, #ffc3d5, #d8b4fe);
+    color: #571b35;
+}
+
+/* Floating hearts */
+
+.hearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.heart {
+    position: absolute;
+    bottom: -50px;
+    animation: floatHeart linear infinite;
+    opacity: .7;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(0) scale(.7) rotate(0deg);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: .8;
+    }
+
+    100% {
+        transform: translateY(-110vh) scale(1.2) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Main card */
+
+.container {
+    position: relative;
+    z-index: 2;
+    width: 92%;
+    max-width: 680px;
+    margin: 50px auto;
+    padding: 40px;
+    border-radius: 35px;
+
+    background: rgba(255,255,255,.78);
+    backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255,255,255,.8);
+
+    box-shadow:
+        0 25px 70px rgba(100, 20, 60, .25),
+        inset 0 1px 0 rgba(255,255,255,.8);
+
+    text-align: center;
+}
+
+/* Typography */
+
+h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4rem;
+    color: #c9185b;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #81405d;
+    font-size: 1.05rem;
+    margin-bottom: 25px;
+}
+
+/* Start */
+
+.big-heart {
+    font-size: 90px;
+    animation: heartbeat 1.2s infinite;
+    margin: 10px 0 20px;
+}
+
+@keyframes heartbeat {
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+.start-text {
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+/* Buttons */
+
+.btn {
+    border: none;
+    padding: 14px 32px;
+    border-radius: 50px;
+
+    background: linear-gradient(135deg,#e91e63,#c2185b);
+
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow: 0 10px 25px rgba(194,24,91,.3);
+
+    transition: .3s;
+}
+
+.btn:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 15px 30px rgba(194,24,91,.4);
+}
+
+/* Quiz */
+
+#quizScreen,
+#resultScreen,
+#proposalScreen {
+    display: none;
+}
+
+.progress-container {
+    height: 9px;
+    background: #f4d9e4;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 20px 0 25px;
+}
+
+.progress {
+    height: 100%;
+    width: 10%;
+    background: linear-gradient(90deg,#ff4f81,#a855f7);
+    transition: .4s;
+}
+
+.question-number {
+    color: #c9185b;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.question {
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+.options {
+    display: grid;
+    gap: 13px;
+}
+
+.option {
+    padding: 15px;
+    border-radius: 18px;
+
+    background: rgba(255,245,249,.9);
+
+    border: 2px solid #f0c7d8;
+
+    cursor: pointer;
+
+    transition: .25s;
+}
+
+.option:hover {
+    transform: translateY(-2px);
+    border-color: #e91e63;
+    background: #ffe7ef;
+}
+
+.option.selected {
+    background: linear-gradient(135deg,#ed4b7a,#c9185b);
+    border-color: #ed4b7a;
+    color: white;
+}
+
+.next-btn {
+    margin-top: 25px;
+    display: none;
+}
+
+/* Result */
+
+.score {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #c9185b;
+    margin: 10px;
+}
+
+.result-message {
+    line-height: 1.8;
+    margin: 15px 0 25px;
+}
+
+/* Proposal screen */
+
+.proposal-heart {
+    font-size: 85px;
+    animation: heartbeat 1s infinite;
+}
+
+.proposal-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4.5rem;
+    color: #c9185b;
+    margin: 10px 0;
+}
+
+.proposal-text {
+    font-size: 1.15rem;
+    line-height: 1.9;
+    margin: 20px auto;
+    max-width: 520px;
+}
+
+.question-love {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    color: #a31550;
+    margin: 25px 0;
+}
+
+/* Yes / No */
+
+.choice-area {
+    position: relative;
+    height: 90px;
+    margin-top: 20px;
+}
+
+.yes-btn {
+    margin-right: 15px;
+}
+
+.no-btn {
+    background: #777;
+    position: relative;
+}
+
+/* Final message */
+
+#foreverMessage {
+    display: none;
+    animation: appear 1s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: scale(.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.forever-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4rem;
+    color: #c9185b;
+}
+
+.forever-text {
+    font-size: 1.1rem;
+    line-height: 1.9;
+    margin-top: 20px;
+}
+
+.signature {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5rem;
+    color: #c9185b;
+    margin-top: 20px;
+}
+
+/* Mobile */
+
+@media(max-width:600px) {
+
+    .container {
+        padding: 28px 18px;
+        margin: 25px auto;
+    }
+
+    h1 {
+        font-size: 3.2rem;
+    }
+
+    .proposal-title {
+        font-size: 3.5rem;
+    }
+
+    .question-love {
+        font-size: 2.4rem;
+    }
+
+    .forever-title {
+        font-size: 3.2rem;
+    }
+
+    .big-heart,
+    .proposal-heart {
+        font-size: 70px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Floating hearts -->
+
+<div class="hearts">
+
+    <span class="heart" style="left:5%;font-size:25px;animation-duration:8s;">❤️</span>
+    <span class="heart" style="left:15%;font-size:18px;animation-duration:10s;animation-delay:2s;">💕</span>
+    <span class="heart" style="left:28%;font-size:30px;animation-duration:7s;animation-delay:1s;">💗</span>
+    <span class="heart" style="left:42%;font-size:20px;animation-duration:9s;animation-delay:4s;">💖</span>
+    <span class="heart" style="left:58%;font-size:27px;animation-duration:8s;animation-delay:2s;">❤️</span>
+    <span class="heart" style="left:72%;font-size:22px;animation-duration:11s;animation-delay:3s;">💕</span>
+    <span class="heart" style="left:87%;font-size:30px;animation-duration:7s;animation-delay:1s;">💘</span>
+
+</div>
+
+
+<div class="container">
+
+<!-- START SCREEN -->
+
+<div id="startScreen">
+
+    <div class="big-heart">💗</div>
+
+    <h1>For My Love</h1>
+
+    <p class="subtitle">
+        I have a very important little test for you...
+    </p>
+
+    <p class="start-text">
+        Let's find out how well you know the girl
+        who loves you more than anything. 🥹❤️
+        <br><br>
+        Be careful...
+        <br>
+        <strong>There may be consequences for wrong answers. 😂</strong>
+    </p>
+
+    <button class="btn" onclick="startQuiz()">
+        Start My Quiz 💕
+    </button>
+
+</div>
+
+
+<!-- QUIZ -->
+
+<div id="quizScreen">
+
+    <h1>Our Little Quiz</h1>
+
+    <div class="progress-container">
+        <div class="progress" id="progress"></div>
+    </div>
+
+    <div class="question-number" id="questionNumber">
+        Question 1 of 10
+    </div>
+
+    <div class="question" id="question"></div>
+
+    <div class="options" id="options"></div>
+
+    <button class="btn next-btn" id="nextBtn"
+            onclick="nextQuestion()">
+        Next ❤️
+    </button>
+
+</div>
+
+
+<!-- RESULT -->
+
+<div id="resultScreen">
+
+    <div class="big-heart">🥰</div>
+
+    <h1>You Did It!</h1>
+
+    <div class="score" id="score"></div>
+
+    <p class="result-message" id="resultMessage"></p>
+
+    <button class="btn" onclick="showProposal()">
+        One Last Question... 💌
+    </button>
+
+</div>
+
+
+<!-- PROPOSAL -->
+
+<div id="proposalScreen">
+
+    <div id="proposalContent">
+
+        <div class="proposal-heart">
+            💖
+        </div>
+
+        <div class="proposal-title">
+            My Love...
+        </div>
+
+        <p class="proposal-text">
+
+            You know something?
+
+            <br><br>
+
+            Out of all the people in this world,
+            I'm so lucky that I found <strong>you</strong>.
+
+            <br><br>
+
+            You've made my ordinary days feel special,
+            my smiles bigger, and my heart much happier.
+
+            <br><br>
+
+            So I have one very important question...
+
+        </p>
+
+        <div class="question-love">
+            Will You Be Mine Forever? 💍❤️
+        </div>
+
+        <div class="choice-area">
+
+            <button class="btn yes-btn"
+                    onclick="sayYes()">
+                YES! ❤️
+            </button>
+
+            <button class="btn no-btn"
+                    id="noButton"
+                    onmouseover="runAway()"
+                    onclick="runAway()">
+                No 😭
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- FINAL YES MESSAGE -->
+
+    <div id="foreverMessage">
+
+        <div class="proposal-heart">
+            💞
+        </div>
+
+        <div class="forever-title">
+            YAAAAAY! ❤️
+        </div>
+
+        <p class="forever-text">
+
+            I knew you'd say yes! 🥹💕
+
+            <br><br>
+
+            Congratulations...
+
+            <br>
+
+            <strong>
+                You're officially stuck with me forever. 😌
+            </strong>
+
+            <br><br>
+
+            Through every laugh,
+            every silly argument,
+            every adventure,
+            every crazy moment...
+
+            <br><br>
+
+            I choose you. ❤️
+
+            <br><br>
+
+            Today, tomorrow,
+            and all the days after that.
+
+        </p>
+
+        <div class="signature">
+            Forever Yours 💕
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* ============================
+   QUESTIONS
+============================ */
+
+const questions = [
+
+    {
+        question: "Who fell in love first? 👀",
+        options: [
+            "Me 😌",
+            "You 😏",
+            "We both did ❤️",
+            "Still investigating 🕵️"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Who is more annoying? 😂",
+        options: [
+            "Me 😇",
+            "You 😂",
+            "Both of us",
+            "We're both innocent 😌"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Who says 'I love you' more often? 💕",
+        options: [
+            "Me ❤️",
+            "You 🥰",
+            "Both equally",
+            "We just stare at each other 😂"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "What would our perfect date be? 🌹",
+        options: [
+            "Fancy dinner 🍝",
+            "Movie + snacks 🍿",
+            "Long drive 🚗",
+            "Anything together ❤️"
+        ],
+        answer: 3
+    },
+
+    {
+        question: "Who gets jealous more easily? 😤",
+        options: [
+            "Me 👀",
+            "You 👀",
+            "Neither",
+            "Both of us 😂"
+        ],
+        answer: 3
+    },
+
+    {
+        question: "Who steals the other's food? 🍟",
+        options: [
+            "Me 😇",
+            "You 😂",
+            "Both",
+            "Nobody"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "What do I need when I'm having a bad day? 🥺",
+        options: [
+            "Food 🍕",
+            "A hug 🤗",
+            "Your attention ❤️",
+            "All of the above"
+        ],
+        answer: 3
+    },
+
+    {
+        question: "Who wins our arguments? 😈",
+        options: [
+            "Me 💅",
+            "You 😂",
+            "Whoever talks louder",
+            "We forget the argument"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "What's most important in our relationship? 💗",
+        options: [
+            "Trust 🤝",
+            "Love ❤️",
+            "Respect 🫶",
+            "All of these"
+        ],
+        answer: 3
+    },
+
+    {
+        question: "Are you lucky to have me? 😌",
+        options: [
+            "YES!!! ❤️",
+            "Absolutely YES!!! 💕",
+            "Obviously 😭❤️",
+            "Is there another answer?"
+        ],
+        answer: 0
+    }
+
+];
+
+
+let currentQuestion = 0;
+let score = 0;
+let selected = false;
+
+
+/* ============================
+   START QUIZ
+============================ */
+
+function startQuiz() {
+
+    document.getElementById("startScreen").style.display = "none";
+
+    document.getElementById("quizScreen").style.display = "block";
+
+    currentQuestion = 0;
+    score = 0;
+
+    showQuestion();
+}
+
+
+/* ============================
+   SHOW QUESTION
+============================ */
+
+function showQuestion() {
+
+    selected = false;
+
+    const q = questions[currentQuestion];
+
+    document.getElementById("questionNumber").textContent =
+        `Question ${currentQuestion + 1} of ${questions.length}`;
+
+    document.getElementById("question").textContent =
+        q.question;
+
+    document.getElementById("progress").style.width =
+        `${((currentQuestion + 1) / questions.length) * 100}%`;
+
+    const options = document.getElementById("options");
+
+    options.innerHTML = "";
+
+    q.options.forEach((option, index) => {
+
+        const div = document.createElement("div");
+
+        div.className = "option";
+
+        div.textContent = option;
+
+        div.onclick = function() {
+
+            selectOption(div, index);
+
+        };
+
+        options.appendChild(div);
+
+    });
+
+    document.getElementById("nextBtn").style.display = "none";
+
+    document.getElementById("nextBtn").textContent =
+        currentQuestion === questions.length - 1
+        ? "See My Result 💖"
+        : "Next ❤️";
+}
+
+
+/* ============================
+   SELECT ANSWER
+============================ */
+
+function selectOption(element, index) {
+
+    if (selected) return;
+
+    selected = true;
+
+    const q = questions[currentQuestion];
+
+    document.querySelectorAll(".option")
+        .forEach(option => {
+            option.classList.remove("selected");
+        });
+
+    element.classList.add("selected");
+
+    if (index === q.answer) {
+        score++;
+    }
+
+    document.getElementById("nextBtn").style.display =
+        "inline-block";
+}
+
+
+/* ============================
+   NEXT QUESTION
+============================ */
+
+function nextQuestion() {
+
+    if (!selected) return;
+
+    currentQuestion++;
+
+    if (currentQuestion < questions.length) {
+
+        showQuestion();
+
+    } else {
+
+        showResult();
+
+    }
+}
+
+
+/* ============================
+   RESULT
+============================ */
+
+function showResult() {
+
+    document.getElementById("quizScreen").style.display =
+        "none";
+
+    document.getElementById("resultScreen").style.display =
+        "block";
+
+    document.getElementById("score").textContent =
+        `${score}/${questions.length}`;
+
+    let message;
+
+    if (score === 10) {
+
+        message =
+        "OMG! 😭❤️ Perfect score! You know me way too well. You're officially the PERFECT BOYFRIEND! 🏆💕";
+
+    } else if (score >= 8) {
+
+        message =
+        "Awww! 🥰 You know me really well! I think you're definitely boyfriend material. ❤️";
+
+    } else if (score >= 5) {
+
+        message =
+        "Not bad! 😂💕 You still have some studying to do... luckily, you get unlimited chances to learn about me. 😌";
+
+    } else {
+
+        message =
+        "Oh nooo! 😭😂 Looks like we need many more dates! But don't worry... I still love you. ❤️";
+
+    }
+
+    document.getElementById("resultMessage").textContent =
+        message;
+
+}
+
+
+/* ============================
+   PROPOSAL
+============================ */
+
+function showProposal() {
+
+    document.getElementById("resultScreen").style.display =
+        "none";
+
+    document.getElementById("proposalScreen").style.display =
+        "block";
+
+}
+
+
+/* ============================
+   RUNAWAY NO BUTTON
+============================ */
+
+function runAway() {
+
+    const button =
+        document.getElementById("noButton");
+
+    const maxX = 220;
+    const maxY = 50;
+
+    const x =
+        Math.random() * maxX - maxX / 2;
+
+    const y =
+        Math.random() * maxY - maxY / 2;
+
+    button.style.transform =
+        `translate(${x}px, ${y}px)`;
+
+}
+
+
+/* ============================
+   YES
+============================ */
+
+function sayYes() {
+
+    document.getElementById("proposalContent")
+        .style.display = "none";
+
+    document.getElementById("foreverMessage")
+        .style.display = "block";
+
+    createHearts();
+
+}
+
+
+/* ============================
+   EXTRA HEART EXPLOSION
+============================ */
+
+function createHearts() {
+
+    const emojis = [
+        "❤️",
+        "💕",
+        "💖",
+        "💗",
+        "💘",
+        "💞",
+        "🥰",
+        "✨"
+    ];
+
+    for (let i = 0; i < 60; i++) {
+
+        const heart =
+            document.createElement("div");
+
+        heart.className = "heart";
+
+        heart.textContent =
+            emojis[Math.floor(Math.random() * emojis.length)];
+
+        heart.style.left =
+            Math.random() * 100 + "%";
+
+        heart.style.fontSize =
+            (15 + Math.random() * 25) + "px";
+
+        heart.style.animationDuration =
+            (4 + Math.random() * 5) + "s";
+
+        document.querySelector(".hearts")
+            .appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 9000);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
+```
